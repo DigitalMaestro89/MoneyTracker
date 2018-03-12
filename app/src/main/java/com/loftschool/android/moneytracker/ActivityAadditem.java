@@ -8,8 +8,8 @@ import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class Activity_additem extends AppCompatActivity {
-    private static final String TAG = "Activity_additem";
+public class ActivityAadditem extends AppCompatActivity {
+    private static final String TAG = "ActivityAdditem";
     private EditText name;
     private EditText price;
     private Button addBtn;
