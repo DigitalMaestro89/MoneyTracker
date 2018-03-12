@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MoneyTracker</string>
+    <string name="add_item_title">Новая запись</string>
+    <string name="spec_many">0₽</string>
 </resources>
