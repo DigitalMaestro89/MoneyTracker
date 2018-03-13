@@ -54,6 +54,7 @@ public class ActivityAadditem extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                price.setText(getString(R.string.price, s));
                 price_fill = !TextUtils.isEmpty(s);
                 fillTxt();
             }
