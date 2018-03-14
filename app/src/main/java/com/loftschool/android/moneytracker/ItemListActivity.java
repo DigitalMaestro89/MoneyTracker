@@ -3,6 +3,7 @@ package com.loftschool.android.moneytracker;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -30,9 +31,15 @@ public class ItemListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_items_list);
         mRecycleView = findViewById(R.id.list);
-        mRecycleView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        mRecycleView.setLayoutManager(layoutManager);
+//        mRecycleView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new ItemListAdapter();
         createData();
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, layoutManager.getOrientation());
+        mRecycleView.addItemDecoration(dividerItemDecoration);
+
         mRecycleView.setAdapter(mAdapter);
     }
 
@@ -53,6 +60,18 @@ public class ItemListActivity extends AppCompatActivity {
         mData.add(new Record("Молоко", 35));
         mData.add(new Record("Жизнь", 1));
         mData.add(new Record("Курсы", 50));
+        for (int i = 0; i < 15; i++) {
+            mData.add(new Record("Продукт №" + i, (int)  (Math.random() * 1000)));
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "ItemListActivity{" +
+                "mRecycleView=" + mRecycleView +
+                ", mData=" + mData +
+                ", mAdapter=" + mAdapter +
+                '}';
     }
 
     private class ItemListAdapter extends RecyclerView.Adapter<RecordViewHolder> {
