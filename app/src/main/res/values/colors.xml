@@ -7,4 +7,18 @@
     <color name="colorBackground">#ffffff</color>
     <color name="textColor">#FF0000</color>
     <color name="white">#FFFFFF</color>
+
+    <color name="colorPrimaryBright">#3ab7ae</color>
+
+    <color name="colorShadow">#30303030</color>
+    <color name="colorItem">#fcc31e</color>
+    <color name="colorItemDark">#daa10c</color>
+    <color name="colorItemSelected">#985305</color>
+    <color name="colorExpense">#f76c41</color>
+    <color name="colorComment">#95989a</color>
+
+    <color name="colorInactive">#ddede8</color>
+    <color name="colorActive">@android:color/white</color>
+    <color name="colorIndicator">#ffff8d</color>
+    <color name="list_item_text">#ffffff</color>
 </resources>

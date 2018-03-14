@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@mipmap/bg_pattern"
-    tools:context="com.loftschool.android.moneytracker.Activity_additem">
+    tools:context="com.loftschool.android.moneytracker.ActivityAadditem">
 
     <LinearLayout
         android:layout_height="68dp"
