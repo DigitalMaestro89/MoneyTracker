@@ -33,7 +33,6 @@ public class ItemListActivity extends AppCompatActivity {
         mRecycleView = findViewById(R.id.list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRecycleView.setLayoutManager(layoutManager);
-//        mRecycleView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new ItemListAdapter();
         createData();
 

@@ -25,7 +25,7 @@
         android:id="@+id/price"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginLeft="4dp"
+        android:layout_marginLeft="6dp"
         android:padding="@dimen/base_padding"
         android:gravity="center"
         android:textColor="@color/white"
