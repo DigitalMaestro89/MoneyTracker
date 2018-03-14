@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by TVV on 14.03.2018.
@@ -43,6 +44,7 @@ public class ItemListActivity extends AppCompatActivity {
     }
 
     private void createData() {
+        Random random = new Random();
         mData.add(new Record("Молоко", 35));
         mData.add(new Record("Жизнь", 1));
         mData.add(new Record("Курсы", 50));
@@ -60,7 +62,8 @@ public class ItemListActivity extends AppCompatActivity {
         mData.add(new Record("Жизнь", 1));
         mData.add(new Record("Курсы", 50));
         for (int i = 0; i < 15; i++) {
-            mData.add(new Record("Продукт №" + i, (int)  (Math.random() * 1000)));
+            mData.add(new Record("Продукт №" + i, random.nextInt(1000)));
+//            mData.add(new Record("Продукт №" + i, (int)  (Math.random() * 1000)));
         }
     }
 
