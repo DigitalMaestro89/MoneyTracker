@@ -8,12 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="MyTabLayout" parent="Widget.Design.TabLayout">
-        <!-- Customize your theme here. -->
-        <item name="tabIndicatorColor">"@color/colorIndicator"</item>
-        <item name="tabBackground">"@color/colorPlate"</item>
-        <item name="tabSelectedTextColor">"@color/colorActive"</item>
-        <item name="tabTextColor">"@color/colorInactive"</item>
-    </style>
+    <!--<style name="MyTabLayout" parent="Widget.Design.TabLayout">-->
+         <!--Customize your theme here. -->
+        <!--<item name="tabIndicatorColor">"@color/colorIndicator"</item>-->
+        <!--<item name="tabBackground">"@color/colorPlate"</item>-->
+        <!--<item name="tabSelectedTextColor">"@color/colorActive"</item>-->
+        <!--<item name="tabTextColor">"@color/colorInactive"</item>-->
+    <!--</style>-->
 
 </resources>
