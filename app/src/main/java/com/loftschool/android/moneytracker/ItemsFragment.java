@@ -19,6 +19,7 @@ public class ItemsFragment extends Fragment {
 
     public static final int TYPE_INCOMES = 1;
     public static final int TYPE_EXPENSES = 2;
+    public static final int TYPE_BALANCE = 3;
 
     private static final String TYPE_KEY = "type";
 
@@ -55,6 +56,7 @@ public class ItemsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_items, container, false);
+//        View view = inflater.inflate(R.layout.activity_main, container, false);
         return view;
     }
 

@@ -8,9 +8,11 @@
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPlate"
+        android:scrollbarStyle="insideInset"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        style="@style/MyTabLayout"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
