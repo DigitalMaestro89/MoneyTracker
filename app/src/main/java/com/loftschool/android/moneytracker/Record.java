@@ -6,17 +6,17 @@ package com.loftschool.android.moneytracker;
 
 public class Record {
 
-    private final String title;
+    private final String name;
     private final int price;
     private String comment;
 
     public Record(String title, int price) {
-        this.title = title;
+        this.name = title;
         this.price = price;
     }
 
     public String getTitle() {
-        return title;
+        return name;
     }
 
     public int getPrice() {

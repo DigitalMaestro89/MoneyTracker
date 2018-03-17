@@ -16,28 +16,24 @@ import android.view.ViewGroup;
 public class ItemsFragment extends Fragment {
 
     private static final int TYPE_UNKNOWN = -1;
-
     public static final int TYPE_INCOMES = 1;
     public static final int TYPE_EXPENSES = 2;
     public static final int TYPE_BALANCE = 3;
 
     private static final String TYPE_KEY = "type";
 
+    private int type;
+    private RecyclerView recycler;
+    private ItemListAdapter adapter;
+
     public static ItemsFragment createItemsFragment(int type) {
         ItemsFragment fragment = new ItemsFragment();
-
         Bundle bundle = new Bundle();
-        bundle.putInt(ItemsFragment.TYPE_KEY, ItemsFragment.TYPE_INCOMES);
+        bundle.putInt(ItemsFragment.TYPE_KEY, type);
 
         fragment.setArguments(bundle);
         return fragment;
     }
-
-
-    private int type;
-
-    private RecyclerView recycler;
-    private ItemListAdapter adapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,7 +52,6 @@ public class ItemsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_items, container, false);
-//        View view = inflater.inflate(R.layout.activity_main, container, false);
         return view;
     }
 

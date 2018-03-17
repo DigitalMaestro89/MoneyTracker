@@ -57,10 +57,10 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.RecordViewHol
         data.add(new Record("Молоко", 35));
         data.add(new Record("Жизнь", 1));
         data.add(new Record("Курсы", 50));
-        for (int i = 0; i < 15; i++) {
-            data.add(new Record("Продукт №" + i, random.nextInt(1000)));
-//            data.add(new Record("Продукт №" + i, (int)  (Math.random() * 1000)));
-        }
+//        for (int i = 0; i < 15; i++) {
+//            data.add(new Record("Продукт №" + i, random.nextInt(1000)));
+////            data.add(new Record("Продукт №" + i, (int)  (Math.random() * 1000)));
+//        }
     }
 
     static class RecordViewHolder extends RecyclerView.ViewHolder {
