@@ -16,6 +16,5 @@
         <item>@string/tab_balance</item>
     </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">The BALANCE</string>
 </resources>
