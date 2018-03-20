@@ -29,6 +29,9 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:27.1.0'
 //    implementation "com.android.support:design:${supportLibrary}"
     implementation "com.android.support:design:27.1.0"
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
 
 
     implementation 'com.android.support:support-v4:27.1.0'

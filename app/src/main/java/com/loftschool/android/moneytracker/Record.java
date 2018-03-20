@@ -6,24 +6,19 @@ package com.loftschool.android.moneytracker;
 
 public class Record {
 
-    private final String name;
-    private final int price;
-    private String comment;
+    public static final String TYPE_UNKNOWN = "unknown";
+    public static final String TYPE_INCOMES = "incomes";
+    public static final String TYPE_EXPENSES = "expenses";
 
-    public Record(String title, int price) {
-        this.name = title;
+    public int id;
+    public String name;
+    public int price;
+    public String type;
+
+    public Record(String name, int price, String type) {
+
+        this.name = name;
         this.price = price;
-    }
-
-    public String getTitle() {
-        return name;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public String getComment() {
-        return comment;
+        this.type = type;
     }
 }
