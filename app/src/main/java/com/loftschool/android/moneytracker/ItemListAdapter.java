@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by Vlad on 16.03.2018.
@@ -17,9 +16,14 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.RecordViewHol
     private static final String TAG = "ItemListAdapter";
     List<Record> data = new ArrayList<>();
 
-    public ItemListAdapter() {
-        createData();
+    public void setData(List<Record> data){
+        this.data = data;
+        notifyDataSetChanged();
     }
+
+//    public ItemListAdapter() {
+//        createData();
+//    }
 
     @Override
     public ItemListAdapter.RecordViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -39,29 +43,33 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.RecordViewHol
         return data.size();
     }
 
-    private void createData() {
-        Random random = new Random();
-        data.add(new Record("Молоко", 35));
-        data.add(new Record("Жизнь", 1));
-        data.add(new Record("Курсы", 50));
-        data.add(new Record("Хлеб", 26));
-        data.add(new Record("Тот самый ужин который я оплатил за всех потому что платил картой", 600000));
-        data.add(new Record("", 0));
-        data.add(new Record("Тот самый ужин", 604));
-        data.add(new Record("ракета Falcon Heavy", 1));
-        data.add(new Record("Лего Тысячелетний сокол", 100000000));
-        data.add(new Record("Монитор", 100));
-        data.add(new Record("MacBook Pro", 100));
-        data.add(new Record("Шоколадка", 100));
-        data.add(new Record("Шкаф", 100));
-        data.add(new Record("Молоко", 35));
-        data.add(new Record("Жизнь", 1));
-        data.add(new Record("Курсы", 50));
-//        for (int i = 0; i < 15; i++) {
-//            data.add(new Record("Продукт №" + i, random.nextInt(1000)));
-////            data.add(new Record("Продукт №" + i, (int)  (Math.random() * 1000)));
-//        }
-    }
+//    public int getPosition(){
+//        return position;
+//    }
+
+//    private void createData() {
+//        Random random = new Random();
+//        data.add(new Record("Молоко", 35));
+//        data.add(new Record("Жизнь", 1));
+//        data.add(new Record("Курсы", 50));
+//        data.add(new Record("Хлеб", 26));
+//        data.add(new Record("Тот самый ужин который я оплатил за всех потому что платил картой", 600000));
+//        data.add(new Record("", 0));
+//        data.add(new Record("Тот самый ужин", 604));
+//        data.add(new Record("ракета Falcon Heavy", 1));
+//        data.add(new Record("Лего Тысячелетний сокол", 100000000));
+//        data.add(new Record("Монитор", 100));
+//        data.add(new Record("MacBook Pro", 100));
+//        data.add(new Record("Шоколадка", 100));
+//        data.add(new Record("Шкаф", 100));
+//        data.add(new Record("Молоко", 35));
+//        data.add(new Record("Жизнь", 1));
+//        data.add(new Record("Курсы", 50));
+////        for (int i = 0; i < 15; i++) {
+////            data.add(new Record("Продукт №" + i, random.nextInt(1000)));
+//////            data.add(new Record("Продукт №" + i, (int)  (Math.random() * 1000)));
+////        }
+//    }
 
     static class RecordViewHolder extends RecyclerView.ViewHolder {
         private final TextView title;
@@ -74,8 +82,8 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.RecordViewHol
         }
 
         public void applyData(Record record) {
-            title.setText(record.getTitle());
-            price.setText(String.valueOf(record.getPrice()));
+            title.setText(record.name);
+            price.setText(String.valueOf(record.price));
         }
     }
 }
