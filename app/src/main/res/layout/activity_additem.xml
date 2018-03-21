@@ -3,18 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@mipmap/bg_pattern"
-    tools:context="com.loftschool.android.moneytracker.ActivityAadditem">
+    tools:context="com.loftschool.android.moneytracker.ActivityAdditem">
 
-    <LinearLayout
-        android:layout_height="68dp"
+    <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:background="@color/white"
-        android:paddingLeft="22dp"
-        android:paddingRight="22dp"
-        android:gravity="center_vertical">
+        android:id = "@+id/toolbar"
+        android:background="@color/colorPrimary"
+        android:elevation="8dp"
+        android:layout_height="?android:attr/actionBarSize"
+        app:titleTextColor="@color/colorActive"
+        />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="68dp">
+
+        <LinearLayout
+            android:layout_height="68dp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:background="@color/white"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
+            android:gravity="center_vertical">
 
                 <EditText
                 android:id="@+id/name"
@@ -39,13 +53,14 @@
 
                 <Button
                 android:id="@+id/add_btn"
-                android:enabled="false"
+                android:enabled="true"
                 android:layout_marginLeft="22dp"
                 android:background="@drawable/ic_add"
                 android:layout_width="26dp"
                 android:layout_height="26dp" />
 
-    </LinearLayout>
+        </LinearLayout>
 
+    </android.support.v7.widget.CardView>
 
 </LinearLayout>

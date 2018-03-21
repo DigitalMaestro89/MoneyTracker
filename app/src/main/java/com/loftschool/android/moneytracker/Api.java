@@ -14,9 +14,8 @@ import retrofit2.http.Query;
 
 public interface Api {
     @GET("/items")
-    Call<List<Record>> getItem(@Query("type") String type);
+    Call<List<Item>> getItem(@Query("type") String type);
 
     @POST("/items")
-    Call<List<Record>> setItem(@Body String type);
+    Call<List<Item>> setItem(@Body String type);
 }
-

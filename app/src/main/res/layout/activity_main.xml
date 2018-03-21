@@ -25,8 +25,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorActive"
+        android:layout_margin="6dp"
         android:text="Войти"
-        android:background="@color/colorPlate"
-        android:onClick="newScreen"/>
+        android:onClick="newScreen"
+        android:background="@color/colorPlate"/>
+
 
 </LinearLayout>

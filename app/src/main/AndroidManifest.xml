@@ -22,13 +22,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ActivityAadditem" android:label="@string/add_item_title">
+        <activity android:name=".ActivityAdditem" android:label="@string/add_item_title">
         </activity>
 
         <activity android:name=".ItemListActivity" android:label="@string/activity_items_list_title">
         </activity>
 
-        <activity android:name=".MainActivityPages" android:label="@string/app_name">
+        <activity android:name=".MainActivityPages" android:label="@string/activity_items_list_title">
         </activity>
 
     </application>

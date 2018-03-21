@@ -28,10 +28,10 @@ public class MainPagesAdapter extends FragmentPagerAdapter {
 
         switch (position) {
             case PAGE_INCOMES:
-                return ItemsFragment.createItemsFragment(Record.TYPE_INCOMES);
+                return ItemsFragment.createItemsFragment(Item.TYPE_INCOMES);
 
             case PAGE_EXPENSES:
-                return ItemsFragment.createItemsFragment(Record.TYPE_EXPENSES);
+                return ItemsFragment.createItemsFragment(Item.TYPE_EXPENSES);
 
             case PAGE_BALANCE:
                 return new BalanceFragment();

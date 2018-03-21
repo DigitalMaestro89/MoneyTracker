@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     public  void newScreen(View view){
         Intent intent = new Intent(this, MainActivityPages.class);
         startActivity(intent);
+
     }
 
     @Override
@@ -50,12 +51,13 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         Log.i(TAG, "onDestroy");
     }
-    private final View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent intent = new Intent(MainActivity.this, MainActivityPages.class);
-            startActivity(intent);
-        }
-    };
+//    private final View.OnClickListener onClickListener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//            Intent intent = new Intent(MainActivity.this, MainActivityPages.class);
+//            Intent intent = new Intent(MainActivity.this, BalanceFragment.class);
+//            startActivity(intent);
+//        }
+//    };
 
 }

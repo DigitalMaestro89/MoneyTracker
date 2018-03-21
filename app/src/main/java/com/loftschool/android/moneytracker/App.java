@@ -25,8 +25,6 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         Log.i(TAG, " OnCreate: ");
-        String[] titles;
-        titles = this.getResources().getStringArray(R.array.tab_title);
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(BuildConfig.DEBUG

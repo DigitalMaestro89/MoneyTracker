@@ -14,28 +14,29 @@ import java.util.List;
  */
 class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.RecordViewHolder> {
     private static final String TAG = "ItemListAdapter";
-    List<Record> data = new ArrayList<>();
+    List<Item> data = new ArrayList<>();
 
-    public void setData(List<Record> data){
+    public void setData(List<Item> data){
         this.data = data;
         notifyDataSetChanged();
     }
 
-//    public ItemListAdapter() {
-//        createData();
-//    }
+    public void addItem(Item item){
+        data.add(0, item);
+        notifyItemInserted(0);
+    }
 
     @Override
     public ItemListAdapter.RecordViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_record, parent, false);
+                .inflate(R.layout.item, parent, false);
         return new ItemListAdapter.RecordViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ItemListAdapter.RecordViewHolder holder, int position) {
-        Record record = data.get(position);
-        holder.applyData(record);
+        Item item = data.get(position);
+        holder.applyData(item);
     }
 
     @Override
@@ -81,9 +82,9 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.RecordViewHol
             price = itemView.findViewById(R.id.price);
         }
 
-        public void applyData(Record record) {
-            title.setText(record.name);
-            price.setText(String.valueOf(record.price));
+        public void applyData(Item item) {
+            title.setText(item.name);
+            price.setText(item.price);
         }
     }
 }
