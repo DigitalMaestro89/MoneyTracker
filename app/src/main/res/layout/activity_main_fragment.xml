@@ -16,6 +16,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
+            android:background="@color/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways|snap"
             app:titleTextColor="@color/colorActive" />
 
@@ -23,12 +24,10 @@
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
-            android:background="@color/colorPlate" />
-        <!--android:scrollbarStyle="insideInset"-->
-        <!--app:tabBackground="@color/colorPlate"-->
-        <!--app:tabIndicatorColor="@color/colorIndicator"-->
-        <!--app:tabSelectedTextColor="@color/colorActive"-->
-        <!--app:tabTextColor="@color/colorInactive"-->
+            android:background="@color/colorPrimary"
+            app:tabIndicatorColor="@color/colorIndicator"
+            app:tabSelectedTextColor="@color/colorActive"
+            app:tabTextColor="@color/colorInactive" />
 
     </android.support.design.widget.AppBarLayout>
 
