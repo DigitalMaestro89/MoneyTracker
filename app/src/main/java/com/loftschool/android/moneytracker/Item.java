@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by TVV on 14.03.2018.
  */
 
-public class Item implements Parcelable{
+public class Item implements Parcelable {
 
     public static final String TYPE_UNKNOWN = "unknown";
     public static final String TYPE_INCOMES = "incomes";
@@ -24,7 +24,8 @@ public class Item implements Parcelable{
         this.price = price;
         this.type = type;
     }
-    protected Item(Parcel in){
+
+    protected Item(Parcel in) {
         id = in.readInt();
         name = in.readString();
         price = in.readString();

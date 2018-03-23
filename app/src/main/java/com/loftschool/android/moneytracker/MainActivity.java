@@ -8,7 +8,7 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    public  final static String EXTRA_MESSAGE = "EXTRA_MESSAGE";
+    public final static String EXTRA_MESSAGE = "EXTRA_MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public  void newScreen(View view){
+    public void newScreen(View view) {
         Intent intent = new Intent(this, MainActivityPages.class);
         startActivity(intent);
 

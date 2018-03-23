@@ -49,7 +49,8 @@ public class App extends Application {
         api = retrofit.create(Api.class);
 
     }
-    public Api getApi(){
+
+    public Api getApi() {
         return api;
     }
 }

@@ -16,12 +16,12 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.RecordViewHol
     private static final String TAG = "ItemListAdapter";
     List<Item> data = new ArrayList<>();
 
-    public void setData(List<Item> data){
+    public void setData(List<Item> data) {
         this.data = data;
         notifyDataSetChanged();
     }
 
-    public void addItem(Item item){
+    public void addItem(Item item) {
         data.add(0, item);
         notifyItemInserted(0);
     }

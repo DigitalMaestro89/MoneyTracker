@@ -102,7 +102,7 @@ public class ItemsFragment extends Fragment {
     }
 
     private void loadItem() {
-        Call<List<Item>> call =  api.getItem(type);
+        Call<List<Item>> call = api.getItem(type);
 
         call.enqueue(new Callback<List<Item>>() {
             @Override
@@ -121,7 +121,7 @@ public class ItemsFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == ADD_ITEM_REQUEST_CODE && resultCode == Activity.RESULT_OK){
+        if (requestCode == ADD_ITEM_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             Item item = data.getParcelableExtra("item");
             adapter.addItem(item);
 

@@ -22,7 +22,6 @@ public class ActivityAdditem extends AppCompatActivity {
     private boolean price_fill = false;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +75,7 @@ public class ActivityAdditem extends AppCompatActivity {
                 String nameValue = name.getText().toString();
                 String priceValue = price.getText().toString();
 
-                if (!nameValue.isEmpty() && !priceValue.isEmpty()){
+                if (!nameValue.isEmpty() && !priceValue.isEmpty()) {
                     Item item = new Item(nameValue, priceValue, type);
                     Intent intent = new Intent();
                     intent.putExtra("item", item);
