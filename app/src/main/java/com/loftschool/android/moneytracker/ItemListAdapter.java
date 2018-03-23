@@ -1,6 +1,7 @@
 package com.loftschool.android.moneytracker;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +13,14 @@ import java.util.List;
 /**
  * Created by Vlad on 16.03.2018.
  */
-class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.RecordViewHolder> {
+class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemsViewHolder> {
     private static final String TAG = "ItemListAdapter";
     List<Item> data = new ArrayList<>();
+    private ItemAdapterListener listener = null;
+
+    public void setListener(ItemAdapterListener listener){
+        this.listener = listener;
+    }
 
     public void setData(List<Item> data) {
         this.data = data;
@@ -27,64 +33,78 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.RecordViewHol
     }
 
     @Override
-    public ItemListAdapter.RecordViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item, parent, false);
-        return new ItemListAdapter.RecordViewHolder(view);
+    public ItemListAdapter.ItemsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+            View view = inflater.inflate(R.layout.item, parent, false);
+        return new ItemsViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ItemListAdapter.RecordViewHolder holder, int position) {
+    public void onBindViewHolder(ItemListAdapter.ItemsViewHolder holder, int position) {
         Item item = data.get(position);
-        holder.applyData(item);
+        holder.bind(item, position, listener, selection.get(position, false));
     }
 
     @Override
     public int getItemCount() {
         return data.size();
     }
+    private SparseBooleanArray selection = new SparseBooleanArray();
 
-//    public int getPosition(){
-//        return position;
-//    }
+    public void toggleSelection(int position){
+        if(selection.get(position, false)){
+            selection.delete(position);
+        }else {
+            selection.put(position, true);
+        }
+    }
 
-//    private void createData() {
-//        Random random = new Random();
-//        data.add(new Record("Молоко", 35));
-//        data.add(new Record("Жизнь", 1));
-//        data.add(new Record("Курсы", 50));
-//        data.add(new Record("Хлеб", 26));
-//        data.add(new Record("Тот самый ужин который я оплатил за всех потому что платил картой", 600000));
-//        data.add(new Record("", 0));
-//        data.add(new Record("Тот самый ужин", 604));
-//        data.add(new Record("ракета Falcon Heavy", 1));
-//        data.add(new Record("Лего Тысячелетний сокол", 100000000));
-//        data.add(new Record("Монитор", 100));
-//        data.add(new Record("MacBook Pro", 100));
-//        data.add(new Record("Шоколадка", 100));
-//        data.add(new Record("Шкаф", 100));
-//        data.add(new Record("Молоко", 35));
-//        data.add(new Record("Жизнь", 1));
-//        data.add(new Record("Курсы", 50));
-////        for (int i = 0; i < 15; i++) {
-////            data.add(new Record("Продукт №" + i, random.nextInt(1000)));
-//////            data.add(new Record("Продукт №" + i, (int)  (Math.random() * 1000)));
-////        }
-//    }
+    void clearSelection(){
+        selection.clear();
+        notifyDataSetChanged();
+    }
 
-    static class RecordViewHolder extends RecyclerView.ViewHolder {
+    int getSelectionItemCount(){
+        return selection.size();
+    }
+    List<Integer> getSelectionItems(){
+        List<Integer> items = new ArrayList<>();
+        for (int i = 0; i < selection.size(); i++) {
+            items.add(selection.keyAt(i));
+        }
+        return items;
+    }
+
+    Item remove(int position){
+        final  Item item = data.remove(position);
+        notifyItemRemoved(position);
+        return item;
+    }
+
+    static class ItemsViewHolder extends RecyclerView.ViewHolder {
         private final TextView title;
         private final TextView price;
 
-        public RecordViewHolder(View itemView) {
+        public ItemsViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.title);
             price = itemView.findViewById(R.id.price);
         }
 
-        public void applyData(Item item) {
+        public void bind(final Item item, final int position, final ItemAdapterListener listener, boolean selectrd) {
             title.setText(item.name);
             price.setText(item.price);
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    if (listener != null){
+                        listener.onItemLongClick(item, position);
+                    }
+                    return true;
+                }
+            });
+            itemView.setActivated(selectrd);
         }
     }
 }
