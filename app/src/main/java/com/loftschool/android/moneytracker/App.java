@@ -25,8 +25,6 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         Log.i(TAG, " OnCreate: ");
-        String[] titles;
-        titles = this.getResources().getStringArray(R.array.tab_title);
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(BuildConfig.DEBUG
@@ -51,7 +49,8 @@ public class App extends Application {
         api = retrofit.create(Api.class);
 
     }
-    public Api getApi(){
+
+    public Api getApi() {
         return api;
     }
 }
