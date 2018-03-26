@@ -28,8 +28,9 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemViewHolde
     }
 
     public void addItem(Item item) {
-        data.add(0, item);
-        notifyItemInserted(0);
+        data.add(item);
+        int position = data.indexOf(item);
+        notifyItemInserted(position);
     }
 
     @Override

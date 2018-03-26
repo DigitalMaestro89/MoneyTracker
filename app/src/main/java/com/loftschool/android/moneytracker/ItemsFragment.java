@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -51,7 +50,6 @@ public class ItemsFragment extends Fragment {
     private RecyclerView recycler;
     private ItemListAdapter adapter;
     private Api api;
-    private FloatingActionButton fab;
     private SwipeRefreshLayout refresh;
 
     @Override
@@ -86,7 +84,6 @@ public class ItemsFragment extends Fragment {
 
         refresh = view.findViewById(R.id.refresh);
         refresh.setColorSchemeColors(Color.BLUE, Color.CYAN, Color.GREEN);
-        refresh.setProgressViewOffset(true, 1, 100);
         refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
