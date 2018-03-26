@@ -1,4 +1,6 @@
-package com.loftschool.android.moneytracker;
+package com.loftschool.android.moneytracker.api;
+
+import com.loftschool.android.moneytracker.Item;
 
 import java.util.List;
 
