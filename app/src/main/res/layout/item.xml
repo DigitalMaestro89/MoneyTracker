@@ -6,29 +6,25 @@
     android:id="@+id/cv_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="2dp"
-    card_view:cardCornerRadius="3dp"
+    android:layout_marginBottom="2dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="2dp"
+    card_view:cardCornerRadius="4dp"
     card_view:cardElevation="4dp"
     card_view:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="0dp"
+        android:background="@drawable/item_bg"
         android:orientation="horizontal">
-        <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
-        <!--xmlns:tools="http://schemas.android.com/tools"-->
-
 
         <TextView
             android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/colorItem"
             android:padding="@dimen/base_padding"
             android:textColor="@color/white"
             tools:text="@string/add_product_name" />
@@ -37,7 +33,7 @@
             android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@color/colorItemDark"
+            android:background="@color/colorShadow"
             android:gravity="center"
             android:padding="@dimen/base_padding"
             android:textColor="@color/white"

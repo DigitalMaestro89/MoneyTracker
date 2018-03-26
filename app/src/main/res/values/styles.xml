@@ -6,14 +6,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-    </style>
 
-    <!--<style name="MyTabLayout" parent="Widget.Design.TabLayout">-->
-         <!--Customize your theme here. -->
-        <!--<item name="tabIndicatorColor">"@color/colorIndicator"</item>-->
-        <!--<item name="tabBackground">"@color/colorPlate"</item>-->
-        <!--<item name="tabSelectedTextColor">"@color/colorActive"</item>-->
-        <!--<item name="tabTextColor">"@color/colorInactive"</item>-->
-    <!--</style>-->
+        <item name="actionModeBackground">@color/colorPrimary</item>
+        <item name="windowActionModeOverlay">true</item>
+    </style>
 
 </resources>
