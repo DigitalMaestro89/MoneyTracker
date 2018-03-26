@@ -196,5 +196,19 @@ public class ItemsFragment extends Fragment {
     private void showDialog() {
         ConfirmationDialog dialog = new ConfirmationDialog();
         dialog.show(getFragmentManager(), "ConfirmationDialog");
+        dialog.setListener(new ConfirmationDialogListener() {
+            @Override
+            public void onPositiveBtnClicker() {
+                removeSelectedItems();
+            }
+
+
+            @Override
+            public void onNegativeBtnClicker() {
+                actionMode.finish();
+
+            }
+
+        });
     }
 }

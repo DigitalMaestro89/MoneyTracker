@@ -22,14 +22,12 @@
 
         <TextView
             android:id="@+id/title"
-            android:background="@color/colorItem"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="@dimen/base_padding"
             android:textColor="@color/white"
             tools:text="@string/add_product_name" />
-        <!--android:background="@color/colorItem"-->
 
         <TextView
             android:id="@+id/price"
