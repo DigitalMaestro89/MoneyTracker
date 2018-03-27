@@ -17,4 +17,8 @@
     </string-array>
 
     <string name="hello_blank_fragment">The BALANCE</string>
+    <string name="title_activity_auth">Authorization</string>
+
+    <string name="text_commit">Ваш незаменимый помошник в управлении бюжетом</string>
+
 </resources>

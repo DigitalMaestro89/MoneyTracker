@@ -14,7 +14,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 
 public class MainActivityPages extends AppCompatActivity implements ViewPager.OnPageChangeListener {
@@ -34,16 +33,15 @@ public class MainActivityPages extends AppCompatActivity implements ViewPager.On
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         viewPager = findViewById(R.id.viewPager);
         tabLayout = findViewById(R.id.tabLayout);
 
-        MainPagesAdapter adapter = new MainPagesAdapter(getSupportFragmentManager(), this);
-        viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(this);
-
         tabLayout.setupWithViewPager(viewPager);
+
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,21 +63,37 @@ public class MainActivityPages extends AppCompatActivity implements ViewPager.On
     }
 
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d(TAG, "onStart");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d(TAG, "onStop");
-    }
-
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        Log.d(TAG, "onStart");
+//    }
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        Log.d(TAG, "onStop");
+//    }
+//
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (((App) getApplication()).isAuthorized()) {
+            initTabs();
+        } else {
+            Intent intent = new Intent(this, AuthActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    private void initTabs() {
+        MainPagesAdapter adapter = new MainPagesAdapter(getSupportFragmentManager(), this);
+        viewPager.setAdapter(adapter);
     }
 
     @Override
