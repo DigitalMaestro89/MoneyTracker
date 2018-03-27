@@ -20,5 +20,6 @@
     <string name="title_activity_auth">Authorization</string>
 
     <string name="text_commit">Ваш незаменимый помошник в управлении бюжетом</string>
+    <string name="Input">Войти</string>
 
 </resources>
