@@ -14,17 +14,58 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 public class MainActivityPages extends AppCompatActivity implements ViewPager.OnPageChangeListener {
     private static final String TAG = "MainActivityPages";
-
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private FloatingActionButton fab;
+    private Boolean flag_start = false;
 
     private ActionMode actionMode = null;
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_logout, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_logout:
+                GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                        .requestEmail()
+                        .build();
+
+                GoogleApiClient googleSignInClient = new GoogleApiClient.Builder(this)
+                        .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                        .build();
+                if (googleSignInClient.isConnected()) {
+                    Auth.GoogleSignInApi.signOut(googleSignInClient);
+//                    googleSignInClient.disconnect();
+//                    googleSignInClient.connect();
+                }
+
+                Intent intent = new Intent(MainActivityPages.this, AuthActivity.class);
+                startActivity(intent);
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +104,7 @@ public class MainActivityPages extends AppCompatActivity implements ViewPager.On
     }
 
 
-//    @Override
+    //    @Override
 //    protected void onStart() {
 //        super.onStart();
 //        Log.d(TAG, "onStart");
@@ -86,14 +127,19 @@ public class MainActivityPages extends AppCompatActivity implements ViewPager.On
         if (((App) getApplication()).isAuthorized()) {
             initTabs();
         } else {
-            Intent intent = new Intent(this, AuthActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(this, AuthActivity.class);
+//            startActivity(intent);
+            initTabs();
         }
     }
 
     private void initTabs() {
-        MainPagesAdapter adapter = new MainPagesAdapter(getSupportFragmentManager(), this);
-        viewPager.setAdapter(adapter);
+
+        if (!flag_start) {
+            MainPagesAdapter adapter = new MainPagesAdapter(getSupportFragmentManager(), this);
+            viewPager.setAdapter(adapter);
+            flag_start = true;
+        }
     }
 
     @Override

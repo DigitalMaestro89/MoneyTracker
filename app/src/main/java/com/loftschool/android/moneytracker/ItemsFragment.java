@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 
 import com.loftschool.android.moneytracker.api.AddItemResult;
 import com.loftschool.android.moneytracker.api.Api;
+import com.loftschool.android.moneytracker.api.RemoveItemResult;
 
 import java.util.List;
 
@@ -114,6 +115,7 @@ public class ItemsFragment extends Fragment {
             }
         });
     }
+
     private void addItem(final Item item) {
         Call<AddItemResult> call = api.addItem(item.price, item.name, item.type);
 
@@ -122,6 +124,7 @@ public class ItemsFragment extends Fragment {
             public void onResponse(Call<AddItemResult> call, Response<AddItemResult> response) {
                 AddItemResult result = response.body();
                 if (result.status.equals("success")) {
+                    item.id = result.id;
                     adapter.addItem(item);
                 }
             }
@@ -137,12 +140,10 @@ public class ItemsFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == ADD_ITEM_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             Item item = data.getParcelableExtra("item");
-            if(item.type.equals(type)){
+            if (item.type.equals(type)) {
                 adapter.addItem(item);
                 addItem(item);
             }
-
-
         }
 
         super.onActivityResult(requestCode, resultCode, data);
@@ -153,7 +154,19 @@ public class ItemsFragment extends Fragment {
 
     private void removeSelectedItems() {
         for (int i = adapter.getSelectionItems().size() - 1; i >= 0; i--) {
-            adapter.remove(adapter.getSelectionItems().get(i));
+            Item item = adapter.remove(adapter.getSelectionItems().get(i));
+            Call<RemoveItemResult> call = api.removeItem(item.id);
+            call.enqueue(new Callback<RemoveItemResult>() {
+                @Override
+                public void onResponse(Call<RemoveItemResult> call, Response<RemoveItemResult> response) {
+
+                }
+
+                @Override
+                public void onFailure(Call<RemoveItemResult> call, Throwable t) {
+
+                }
+            });
         }
         actionMode.finish();
     }
