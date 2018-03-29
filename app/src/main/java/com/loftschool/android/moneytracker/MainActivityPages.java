@@ -32,7 +32,6 @@ public class MainActivityPages extends AppCompatActivity implements ViewPager.On
 
     private ActionMode actionMode = null;
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -54,8 +53,6 @@ public class MainActivityPages extends AppCompatActivity implements ViewPager.On
                         .build();
                 if (googleSignInClient.isConnected()) {
                     Auth.GoogleSignInApi.signOut(googleSignInClient);
-//                    googleSignInClient.disconnect();
-//                    googleSignInClient.connect();
                 }
 
                 Intent intent = new Intent(MainActivityPages.this, AuthActivity.class);
@@ -102,8 +99,6 @@ public class MainActivityPages extends AppCompatActivity implements ViewPager.On
             }
         });
     }
-
-
     //    @Override
 //    protected void onStart() {
 //        super.onStart();

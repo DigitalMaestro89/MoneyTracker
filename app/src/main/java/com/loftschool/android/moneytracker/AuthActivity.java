@@ -71,9 +71,7 @@ public class AuthActivity extends AppCompatActivity {
         if (account != null) {
             updateUI(account);
         }
-
     }
-
 
     private void signIn() {
         Log.i(TAG, "signIn: ");
