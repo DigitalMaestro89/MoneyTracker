@@ -19,16 +19,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.GoogleApiClient;
-
 public class MainActivityPages extends AppCompatActivity implements ViewPager.OnPageChangeListener {
     private static final String TAG = "MainActivityPages";
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private FloatingActionButton fab;
     private Boolean flag_start = false;
+
+
 
     private ActionMode actionMode = null;
 
@@ -44,18 +42,8 @@ public class MainActivityPages extends AppCompatActivity implements ViewPager.On
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_logout:
-                GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestEmail()
-                        .build();
-
-                GoogleApiClient googleSignInClient = new GoogleApiClient.Builder(this)
-                        .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                        .build();
-                if (googleSignInClient.isConnected()) {
-                    Auth.GoogleSignInApi.signOut(googleSignInClient);
-                }
-
                 Intent intent = new Intent(MainActivityPages.this, AuthActivity.class);
+                intent.putExtra(AuthActivity.RC_SIGN_OUT, true);
                 startActivity(intent);
                 finish();
                 return true;
@@ -99,6 +87,7 @@ public class MainActivityPages extends AppCompatActivity implements ViewPager.On
             }
         });
     }
+
     //    @Override
 //    protected void onStart() {
 //        super.onStart();

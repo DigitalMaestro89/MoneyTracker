@@ -9,6 +9,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -32,10 +35,37 @@ public class AuthActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 321;
 
     private static final String TAG = "AuthActivity";
+    protected static final String RC_SIGN_OUT = "logout";
+    private static Boolean logout = false;
 
     private GoogleSignInClient googleSignInClient;
 
     private Api api;
+
+    private GoogleSignInClient getGoogleSignInClient() {
+        return googleSignInClient;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_demo, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_demo:
+                Intent intent = new Intent(AuthActivity.this, MainActivityPages.class);
+                startActivity(intent);
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +79,6 @@ public class AuthActivity extends AppCompatActivity {
                 .requestEmail()
                 .build();
 
-        googleSignInClient = GoogleSignIn.getClient(this, gso);
-
-//        SignInButton button = findViewById(R.id.sign_in_button);
         LinearLayout button = findViewById(R.id.sign_in_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +96,9 @@ public class AuthActivity extends AppCompatActivity {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
 
         if (account != null) {
-            updateUI(account);
+            if (getIntent().getBooleanExtra(RC_SIGN_OUT, logout)) {
+                signOut();
+            } else updateUI(account);
         }
     }
 
@@ -78,6 +107,13 @@ public class AuthActivity extends AppCompatActivity {
         Intent signInIntent = googleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
+
+    private void signOut() {
+        Log.i(TAG, "signOut: ");
+        googleSignInClient.signOut();
+        updateUI(null);
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -114,6 +150,7 @@ public class AuthActivity extends AppCompatActivity {
             public void onResponse(Call<AuthResult> call, Response<AuthResult> response) {
                 AuthResult result = response.body();
                 ((App) getApplication()).saveAuthToken(result.token);
+                showSuccess();
                 finish();
             }
 
