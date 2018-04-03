@@ -32,8 +32,8 @@ public class DiagramView extends View {
     public DiagramView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        incomePaint.setColor(getResources().getColor(R.color.colorExpense));
-        expensePaint.setColor(getResources().getColor(R.color.colorItemDark));
+        incomePaint.setColor(getResources().getColor(R.color.colorItemDark));
+        expensePaint.setColor(getResources().getColor(R.color.colorExpense));
 
         if (isInEditMode()) {
             income = 19000;

@@ -60,18 +60,19 @@ public class BalanceFragment extends Fragment {
             @Override
             public void onResponse(Call<BalanceResult> call, Response<BalanceResult> response) {
                 BalanceResult result = response.body();
-                int income_val = 19000;
-                int expense_val = 4500;
-
-                total.setText(getString(R.string.price, income_val - expense_val));
-                expense.setText(getString(R.string.price, expense_val));
-                income.setText(getString(R.string.price, income_val));
-                diagram.update(income_val, expense_val);
-
-//                total.setText(getString(R.string.price, result.income - result.expense));
-//                expense.setText(getString(R.string.price, result.expense));
-//                income.setText(getString(R.string.price, result.income));
-//                diagram.update(result.income, result.expense);
+                if (result.income == 0 && result.expense == 0) {
+                    int income_val = 19000;
+                    int expense_val = 4500;
+                    total.setText(getString(R.string.price, income_val - expense_val));
+                    expense.setText(getString(R.string.price, expense_val));
+                    income.setText(getString(R.string.price, income_val));
+                    diagram.update(income_val, expense_val);
+                } else {
+                    total.setText(getString(R.string.price, result.income - result.expense));
+                    expense.setText(getString(R.string.price, result.expense));
+                    income.setText(getString(R.string.price, result.income));
+                    diagram.update(result.income, result.expense);
+                }
             }
 
             @Override

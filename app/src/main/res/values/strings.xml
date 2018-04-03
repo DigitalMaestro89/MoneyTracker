@@ -23,5 +23,6 @@
 
     <string name="text_commit">Ваш незаменимый помошник в управлении бюжетом</string>
     <string name="Input">Войти</string>
+    <string name="price_formated">%1$s \\u20bd</string>
 
 </resources>

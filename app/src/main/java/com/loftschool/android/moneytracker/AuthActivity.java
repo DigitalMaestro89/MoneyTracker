@@ -79,6 +79,7 @@ public class AuthActivity extends AppCompatActivity {
                 .requestEmail()
                 .build();
 
+        googleSignInClient = GoogleSignIn.getClient(this, gso);
         LinearLayout button = findViewById(R.id.sign_in_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,6 +101,9 @@ public class AuthActivity extends AppCompatActivity {
                 signOut();
             } else updateUI(account);
         }
+//        if (account != null) {
+//            updateUI(account);
+//        }
     }
 
     private void signIn() {
@@ -129,7 +133,6 @@ public class AuthActivity extends AppCompatActivity {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-
             updateUI(account);
         } catch (ApiException e) {
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
@@ -151,6 +154,8 @@ public class AuthActivity extends AppCompatActivity {
                 AuthResult result = response.body();
                 ((App) getApplication()).saveAuthToken(result.token);
                 showSuccess();
+                Intent intent = new Intent(AuthActivity.this, MainActivityPages.class);
+                startActivity(intent);
                 finish();
             }
 

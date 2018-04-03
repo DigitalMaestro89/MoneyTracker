@@ -111,9 +111,9 @@ public class MainActivityPages extends AppCompatActivity implements ViewPager.On
         if (((App) getApplication()).isAuthorized()) {
             initTabs();
         } else {
-//            Intent intent = new Intent(this, AuthActivity.class);
-//            startActivity(intent);
-            initTabs();
+            Intent intent = new Intent(this, AuthActivity.class);
+            startActivity(intent);
+//            initTabs();
         }
     }
 
