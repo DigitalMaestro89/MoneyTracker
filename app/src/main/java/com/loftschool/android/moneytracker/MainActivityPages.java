@@ -14,18 +14,43 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 public class MainActivityPages extends AppCompatActivity implements ViewPager.OnPageChangeListener {
     private static final String TAG = "MainActivityPages";
-
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private FloatingActionButton fab;
+    private Boolean flag_start = false;
+
+
 
     private ActionMode actionMode = null;
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_logout, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_logout:
+                Intent intent = new Intent(MainActivityPages.this, AuthActivity.class);
+                intent.putExtra(AuthActivity.RC_SIGN_OUT, true);
+                startActivity(intent);
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +59,15 @@ public class MainActivityPages extends AppCompatActivity implements ViewPager.On
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         viewPager = findViewById(R.id.viewPager);
         tabLayout = findViewById(R.id.tabLayout);
 
-        MainPagesAdapter adapter = new MainPagesAdapter(getSupportFragmentManager(), this);
-        viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(this);
-
         tabLayout.setupWithViewPager(viewPager);
+
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,22 +88,42 @@ public class MainActivityPages extends AppCompatActivity implements ViewPager.On
         });
     }
 
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d(TAG, "onStart");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d(TAG, "onStop");
-    }
-
+    //    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        Log.d(TAG, "onStart");
+//    }
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        Log.d(TAG, "onStop");
+//    }
+//
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (((App) getApplication()).isAuthorized()) {
+            initTabs();
+        } else {
+            Intent intent = new Intent(this, AuthActivity.class);
+            startActivity(intent);
+//            initTabs();
+        }
+    }
+
+    private void initTabs() {
+
+        if (!flag_start) {
+            MainPagesAdapter adapter = new MainPagesAdapter(getSupportFragmentManager(), this);
+            viewPager.setAdapter(adapter);
+            flag_start = true;
+        }
     }
 
     @Override

@@ -2,7 +2,8 @@
     <string name="app_name">MoneyTracker</string>
     <string name="add_item_title">Новая запись</string>
     <string name="spec_many">0₽</string>
-    <string name="price">%s &#x20bd;</string>
+    <!--<string name="price">%s &#x20bd;</string>-->
+    <string name="price">%1$d \u20bd</string>
     <string name="activity_items_list_title">Учёт бюджета</string>
     <string name="add_product_name">Продукт</string>
 
@@ -16,5 +17,12 @@
         <item>@string/tab_balance</item>
     </string-array>
 
-    <string name="hello_blank_fragment">The BALANCE</string>
+    <string name="balance_total">Ваш баланс</string>
+    <string name="balance_expense">Расход</string>
+    <string name="balance_income">Доход</string>
+
+    <string name="text_commit">Ваш незаменимый помошник в управлении бюжетом</string>
+    <string name="Input">Войти</string>
+    <string name="price_formated">%1$s \\u20bd</string>
+
 </resources>

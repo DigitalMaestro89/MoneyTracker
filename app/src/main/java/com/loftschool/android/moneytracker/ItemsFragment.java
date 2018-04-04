@@ -23,7 +23,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.loftschool.android.moneytracker.api.AddItemResult;
 import com.loftschool.android.moneytracker.api.Api;
+import com.loftschool.android.moneytracker.api.RemoveItemResult;
 
 import java.util.List;
 
@@ -50,6 +52,7 @@ public class ItemsFragment extends Fragment {
     private RecyclerView recycler;
     private ItemListAdapter adapter;
     private Api api;
+    private App app;
     private SwipeRefreshLayout refresh;
 
     @Override
@@ -65,7 +68,8 @@ public class ItemsFragment extends Fragment {
             throw new IllegalArgumentException("Unknown type");
         }
 
-        api = ((App) getActivity().getApplication()).getApi();
+        app = (App) getActivity().getApplication();
+        api = app.getApi();
     }
 
     @Nullable
@@ -95,7 +99,7 @@ public class ItemsFragment extends Fragment {
     }
 
     private void loadItem() {
-        Call<List<Item>> call = api.getItem(type);
+        Call<List<Item>> call = api.getItems(type);
 
         call.enqueue(new Callback<List<Item>>() {
             @Override
@@ -112,12 +116,34 @@ public class ItemsFragment extends Fragment {
         });
     }
 
+    private void addItem(final Item item) {
+        Call<AddItemResult> call = api.addItem(item.price, item.name, item.type);
+
+        call.enqueue(new Callback<AddItemResult>() {
+            @Override
+            public void onResponse(Call<AddItemResult> call, Response<AddItemResult> response) {
+                AddItemResult result = response.body();
+                if (result.status.equals("success")) {
+                    item.id = result.id;
+                    adapter.addItem(item);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddItemResult> call, Throwable t) {
+
+            }
+        });
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == ADD_ITEM_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             Item item = data.getParcelableExtra("item");
-            adapter.addItem(item);
-
+            if (item.type.equals(type)) {
+                adapter.addItem(item);
+                addItem(item);
+            }
         }
 
         super.onActivityResult(requestCode, resultCode, data);
@@ -128,7 +154,19 @@ public class ItemsFragment extends Fragment {
 
     private void removeSelectedItems() {
         for (int i = adapter.getSelectionItems().size() - 1; i >= 0; i--) {
-            adapter.remove(adapter.getSelectionItems().get(i));
+            Item item = adapter.remove(adapter.getSelectionItems().get(i));
+            Call<RemoveItemResult> call = api.removeItem(item.id);
+            call.enqueue(new Callback<RemoveItemResult>() {
+                @Override
+                public void onResponse(Call<RemoveItemResult> call, Response<RemoveItemResult> response) {
+
+                }
+
+                @Override
+                public void onFailure(Call<RemoveItemResult> call, Throwable t) {
+
+                }
+            });
         }
         actionMode.finish();
     }
@@ -205,7 +243,6 @@ public class ItemsFragment extends Fragment {
             @Override
             public void onNegativeBtnClicker() {
                 actionMode.finish();
-
             }
 
         });

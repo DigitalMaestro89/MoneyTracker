@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,7 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemViewHolde
         data.add(item);
         int position = data.indexOf(item);
         notifyItemInserted(position);
+        notifyDataSetChanged();
     }
 
     @Override

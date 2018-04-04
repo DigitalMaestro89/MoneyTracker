@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
+    buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "com.loftschool.android.moneytracker"
         minSdkVersion 19
@@ -14,8 +15,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", "\"http://android.loftschool.com/basic/v1/\""
         }
-    }
+        debug {
+            buildConfigField "String", "BASE_URL", "\"http://android.loftschool.com/basic/v1/\""
+        }    }
 }
 
 ext {
@@ -34,7 +38,10 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
     implementation 'com.android.support:cardview-v7:27.1.0'
 
-    implementation 'com.android.support:support-v4:27.1.0'
+//    implementation 'com.android.support:support-v4:27.1.0'
+    implementation 'com.google.android.gms:play-services-auth:12.0.1'
+//    implementation 'com.google.android.gms:play-services-auth:11.8.0'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'

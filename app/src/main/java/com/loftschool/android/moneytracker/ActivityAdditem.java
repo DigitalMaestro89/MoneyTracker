@@ -39,37 +39,6 @@ public class ActivityAdditem extends AppCompatActivity {
         addBtn = findViewById(R.id.add_btn);
         type = getIntent().getStringExtra(TYPE_KEY);
 
-//        name.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//                name_fill = !TextUtils.isEmpty(s);
-//                fillTxt();
-//            }
-//        });
-//        price.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//                price.setText(getString(R.string.price, s));
-//                price_fill = !TextUtils.isEmpty(s);
-//                fillTxt();
-//            }
-//        });
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,17 +57,11 @@ public class ActivityAdditem extends AppCompatActivity {
         });
     }
 
-    protected void fillTxt() {
-        if (name_fill && price_fill && true) {
-            addBtn.setEnabled(true);
-        } else addBtn.setEnabled(false);
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home) {
+        if (item.getItemId() == android.R.id.home) {
             finish();
-            return  true;
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
